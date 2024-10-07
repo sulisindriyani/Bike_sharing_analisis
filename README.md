@@ -13,7 +13,7 @@ yang berisi tentang Grafik Garis untuk Frequency vs Recency , Grafik Garis untuk
 3. Navigasi ke Folder Proyek<br>
    C:\Users\smart user\Videos\Bike-sharing-dataset\dashboard\<br>
 4.Nalankan perintah ini untuk berpindah ke folder tersebut:<br>
- cd C:\Users\smart user\Videos\Bike-sharing-dataset\dashboard\<br>
+cd C:\Users\smart user\Videos\Bike-sharing-dataset\dashboard\<br>
 5. Jalankan Aplikasi Streamlit<br>
    streamlit run nama_file_anda.py<br>
 misal: streamlit run streamlit_rfm_analysis.py<br>
