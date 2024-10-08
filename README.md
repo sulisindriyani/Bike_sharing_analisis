@@ -12,10 +12,10 @@ yang berisi tentang Grafik Garis untuk Frequency vs Recency , Grafik Garis untuk
 2. Pastikan Streamlit Terpasang<br>
    pip install streamlit<br>
 3. Navigasi ke Folder Proyek<br>
-   cd "C:\Users\smart user\Videos\dashboard" <br>
+  "C:/Users/smart user/Videos/dashboard/dashboard/dashboard_analisis_bike.py" <br>
 4. Jalankan Aplikasi Streamlit<br>
    streamlit run nama_file_anda.py<br>
-misal: streamlit run dashboard_analisis_bike.py<br>
+misal: streamlit run "C:/Users/smart user/Videos/dashboard/dashboard/dashboard_analisis_bike.py"<br>
 5. Setelah menjalankan perintah tersebut, Streamlit akan menampilkan tautan lokal tersebut<br>
 
 # Dataset<br>
