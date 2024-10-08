@@ -9,8 +9,8 @@ sns.set(style='dark')
 # Fungsi untuk memuat data
 @st.cache_data
 def load_data():
-    hour_df = pd.read_csv('all_data(2).csv')
-    day_df = pd.read_csv('all_data(2).csv')
+    hour_df = pd.read_csv('all_data (2).csv')
+    day_df = pd.read_csv('all_data (2).csv')
     
     return hour_df, day_df
 
@@ -24,8 +24,8 @@ import pandas as pd
 import streamlit as st
 
 def load_data():
-    hour_df = pd.read_csv('all_data(2).csv')
-    day_df = pd.read_csv('all_data(2).csv')
+    hour_df = pd.read_csv('all_data (2).csv')
+    day_df = pd.read_csv('all_data (2).csv')
     
     # Pastikan kolom tanggal diubah menjadi format datetime
     day_df['dteday'] = pd.to_datetime(day_df['dteday'])  # Sesuaikan dengan nama kolom tanggal di day_df
