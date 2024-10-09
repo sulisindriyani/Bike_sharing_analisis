@@ -69,13 +69,6 @@ if start_date and end_date:
         (filtered_data['dteday'] <= pd.to_datetime(end_date))
     ]
 
-# Menerapkan filter untuk jam
-if selected_hour != "All":
-    filtered_data = filtered_data[filtered_data['hr'] == selected_hour]
-
-# Menampilkan data yang difilter
-st.subheader(f"Data Penyewaan untuk Jam: {selected_hour} dan Tanggal: {start_date} sampai {end_date}")
-st.write(filtered_data)
 
 
 # 1. waktu paling banyak pelanggan peyewaan sepeda
@@ -94,6 +87,14 @@ ax1.set_xlabel('Jam')
 ax1.set_ylabel('Jumlah Penyewaan')
 ax1.set_xticklabels(ax1.get_xticklabels(), rotation=45, ha='right')  # Mengatur rotasi agar label tidak tumpang tindih
 st.pyplot(fig1)
+
+# Menerapkan filter untuk jam
+if selected_hour != "All":
+    filtered_data = filtered_data[filtered_data['hr'] == selected_hour]
+
+# Menampilkan data yang difilter
+st.subheader(f"Data Penyewaan untuk Jam: {selected_hour} dan Tanggal: {start_date} sampai {end_date}")
+st.write(filtered_data)
 
 
 # 2. Tren penyewaan sepeda berdasarkan hari kerja dan libur
