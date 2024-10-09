@@ -51,11 +51,13 @@ if selected_hour != "All":
 st.subheader(f"Data Penyewaan untuk Jam: {selected_hour} dan Tanggal: {start_date} sampai {end_date}")
 st.write(filtered_data)
 
+
+# Mengubah kolom jam menjadi format waktu
+popular_hour['hr_formatted'] = popular_hour['hr'].astype(str).str.zfill(2) + ':00'
+
 # Mengelompokkan dan menghitung total penyewaan per jam
 popular_hour = hour_df.groupby('hr')['cnt'].sum().reset_index()
     
-# Mengubah kolom jam menjadi format waktu
-popular_hour['hr_formatted'] = popular_hour['hr'].astype(str).str.zfill(2) + ':00'
 
 # Plot line chart
 fig1, ax1 = plt.subplots()
@@ -82,7 +84,7 @@ day_df['day_name'] = day_df['weekday'].replace({
 day_order = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']
 day_df['day_name'] = pd.Categorical(day_df['day_name'], categories=day_order, ordered=True)
 
-st.title("Analisis Data RFM untuk Penyewaan Sepeda")
+st.title("Penyewaan Sepeda Berdasarkan Hari Kerja dan Hari Libur")
 weekday_trend = day_df.groupby('day_name')['cnt'].sum().reset_index()
 fig3, ax3 = plt.subplots()
 sns.barplot(data=weekday_trend, x='day_name', y='cnt', ax=ax3, order=day_order, palette="Blues")
