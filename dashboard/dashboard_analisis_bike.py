@@ -58,8 +58,7 @@ popular_hour = hour_df.groupby('hr')['cnt'].sum().reset_index()
 popular_hour['hr_formatted'] = popular_hour['hr'].astype(str).str.zfill(2) + ':00'
     
 # Plot line chart
-fig1, ax1 = plt.subplots()
-sns.lineplot(data=popular_hour, x='hr_formatted', y='cnt', ax=ax1, marker='o', color=sns.color_palette("Blues", n_colors=3)[2])
+
 ax1.set_title('Jumlah Penyewaan Sepeda Berdasarkan Jam')
 ax1.set_xlabel('Jam')
 ax1.set_ylabel('Jumlah Penyewaan')
