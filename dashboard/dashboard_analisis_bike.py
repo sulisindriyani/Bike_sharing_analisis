@@ -20,8 +20,6 @@ hour_df, day_df = load_data()
 # Dashboard title
 st.title(':bike: Bike Sharing Dashboard')
 
-import pandas as pd
-import streamlit as st
 
 def load_data():
     hour_df = pd.read_csv('all_data (2).csv')
@@ -84,9 +82,7 @@ st.write(filtered_data)
 st.header("penyewaan sepeda berdasarkan jam")
  # Mengelompokkan dan menghitung total penyewaan per jam
 popular_hour = hour_df.groupby('hr')['cnt'].sum().reset_index()
-    # Lanjutkan dengan pengolahan data
-    popular_hour = hour_df.groupby('hr')['cnt'].sum().reset_index()
-    st.write(popular_hour)
+
 # Mengubah kolom jam menjadi format waktu (misalnya '00:00', '01:00', dll.)
 popular_hour['hr_formatted'] = popular_hour['hr'].astype(str).str.zfill(2) + ':00'
 
