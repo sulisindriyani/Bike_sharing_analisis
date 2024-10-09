@@ -48,7 +48,7 @@ if start_date and end_date:
 if selected_hour != "All":
     filtered_data = filtered_data[filtered_data['hr'] == selected_hour]
 
-st.subheader("Data Penyewaan untuk Jam: {selected_hour} dan Tanggal: {start_date} sampai {end_date}")
+st.subheader(f"Data Penyewaan untuk Jam: {selected_hour} dan Tanggal: {start_date} sampai {end_date}")
 st.write(filtered_data)
 
 # Mengelompokkan dan menghitung total penyewaan per jam
