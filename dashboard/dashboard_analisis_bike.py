@@ -52,7 +52,7 @@ st.subheader(f"Data Penyewaan untuk Jam: {selected_hour} dan Tanggal: {start_dat
 st.write(filtered_data)
 
 # Mengelompokkan dan menghitung total penyewaan per jam
-popular_hour = hour_df.groupby('hr')['cnt'].sum().reset_index()
+popular_hour = hour_df.groupby['hr']['cnt'].sum().reset_index()
     
 # Mengubah kolom jam menjadi format waktu
 popular_hour['hr_formatted'] = popular_hour['hr'].astype(str).str.zfill(2) + ':00'
