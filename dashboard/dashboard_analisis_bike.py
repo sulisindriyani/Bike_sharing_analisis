@@ -17,15 +17,6 @@ hour_df, day_df = load_data()
 
 st.title(':bike: Bike Sharing Dashboard')
 
-# Plot line chart
-fig1, ax1 = plt.subplots()
-sns.lineplot(data=popular_hour, x='hr_formatted', y='cnt', ax=ax1, marker='o', color=sns.color_palette("Blues", n_colors=3)[2])
-ax1.set_title('Jumlah Penyewaan Sepeda Berdasarkan Jam')
-ax1.set_xlabel('Jam')
-ax1.set_ylabel('Jumlah Penyewaan')
-ax1.set_xticklabels(ax1.get_xticklabels(), rotation=45, ha='right')
-st.pyplot(fig1)
-
 min_date = day_df['dteday'].min()
 max_date = day_df['dteday'].max()
 
@@ -65,7 +56,16 @@ popular_hour = hour_df.groupby('hr')['cnt'].sum().reset_index()
 
 # Mengubah kolom jam menjadi format waktu
 popular_hour['hr_formatted'] = popular_hour['hr'].astype(str).str.zfill(2) + ':00'
-    
+
+st.title("Penyewaan Sepeda Berdasarkan jam")
+# Plot line chart
+fig1, ax1 = plt.subplots()
+sns.lineplot(data=popular_hour, x='hr_formatted', y='cnt', ax=ax1, marker='o', color=sns.color_palette("Blues", n_colors=3)[2])
+ax1.set_title('Jumlah Penyewaan Sepeda Berdasarkan Jam')
+ax1.set_xlabel('Jam')
+ax1.set_ylabel('Jumlah Penyewaan')
+ax1.set_xticklabels(ax1.get_xticklabels(), rotation=45, ha='right')
+st.pyplot(fig1)
 
 # penyewaan berdasarkan hari kerja dan libur
 day_df['weekday'] = day_df['dteday'].dt.weekday  # Menambahkan kolom 'weekday'
