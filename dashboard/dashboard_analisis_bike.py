@@ -51,20 +51,20 @@ if selected_hour != "All":
 st.subheader(f"Data Penyewaan untuk Jam: {selected_hour} dan Tanggal: {start_date} sampai {end_date}")
 st.write(filtered_data)
 
-    # Mengelompokkan dan menghitung total penyewaan per jam
-    popular_hour = hour_df.groupby('hr')['cnt'].sum().reset_index()
+# Mengelompokkan dan menghitung total penyewaan per jam
+popular_hour = hour_df.groupby('hr')['cnt'].sum().reset_index()
     
-    # Mengubah kolom jam menjadi format waktu
-    popular_hour['hr_formatted'] = popular_hour['hr'].astype(str).str.zfill(2) + ':00'
+# Mengubah kolom jam menjadi format waktu
+popular_hour['hr_formatted'] = popular_hour['hr'].astype(str).str.zfill(2) + ':00'
 
-    # Plot line chart
-    fig1, ax1 = plt.subplots()
-    sns.lineplot(data=popular_hour, x='hr_formatted', y='cnt', ax=ax1, marker='o', color=sns.color_palette("Blues", n_colors=3)[2])
-    ax1.set_title('Jumlah Penyewaan Sepeda Berdasarkan Jam')
-    ax1.set_xlabel('Jam')
-    ax1.set_ylabel('Jumlah Penyewaan')
-    ax1.set_xticklabels(ax1.get_xticklabels(), rotation=45, ha='right')
-    st.pyplot(fig1)
+# Plot line chart
+fig1, ax1 = plt.subplots()
+sns.lineplot(data=popular_hour, x='hr_formatted', y='cnt', ax=ax1, marker='o', color=sns.color_palette("Blues", n_colors=3)[2])
+ax1.set_title('Jumlah Penyewaan Sepeda Berdasarkan Jam')
+ax1.set_xlabel('Jam')
+ax1.set_ylabel('Jumlah Penyewaan')
+ax1.set_xticklabels(ax1.get_xticklabels(), rotation=45, ha='right')
+st.pyplot(fig1)
 # penyewaan berdasarkan hari kerja dan libur
 day_df['weekday'] = day_df['dteday'].dt.weekday  # Menambahkan kolom 'weekday'
 
