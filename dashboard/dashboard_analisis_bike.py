@@ -51,11 +51,16 @@ if selected_hour != "All":
 st.subheader(f"Data Penyewaan untuk Jam: {selected_hour} dan Tanggal: {start_date} sampai {end_date}")
 st.write(filtered_data)
 
-# Analisis penyewaan berdasarkan jam
-if 'cnt' in hour_df.columns and 'hr' in hour_df.columns:
+if 'cnt' not in hour_df.columns:
+    st.error("Kolom 'cnt' tidak ditemukan dalam DataFrame. Periksa file CSV.")
+else:
+    # Mengelompokkan dan menghitung total penyewaan per jam
     popular_hour = hour_df.groupby('hr')['cnt'].sum().reset_index()
-    popular_hour['hr_formatted'] = popular_hour['hr'].astype(str).str.zfill(2) + ':00'
     
+    # Mengubah kolom jam menjadi format waktu
+    popular_hour['hr_formatted'] = popular_hour['hr'].astype(str).str.zfill(2) + ':00'
+
+    # Plot line chart
     fig1, ax1 = plt.subplots()
     sns.lineplot(data=popular_hour, x='hr_formatted', y='cnt', ax=ax1, marker='o', color=sns.color_palette("Blues", n_colors=3)[2])
     ax1.set_title('Jumlah Penyewaan Sepeda Berdasarkan Jam')
@@ -63,9 +68,6 @@ if 'cnt' in hour_df.columns and 'hr' in hour_df.columns:
     ax1.set_ylabel('Jumlah Penyewaan')
     ax1.set_xticklabels(ax1.get_xticklabels(), rotation=45, ha='right')
     st.pyplot(fig1)
-else:
-    st.error("Kolom 'cnt' atau 'hr' tidak ditemukan dalam DataFrame.")
-
 # penyewaan berdasarkan hari kerja dan libur
 day_df['weekday'] = day_df['dteday'].dt.weekday  # Menambahkan kolom 'weekday'
 
