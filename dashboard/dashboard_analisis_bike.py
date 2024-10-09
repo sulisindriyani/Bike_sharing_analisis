@@ -48,15 +48,6 @@ if start_date and end_date:
 if selected_hour != "All":
     filtered_data = filtered_data[filtered_data['hr'] == selected_hour]
 
-# Plot line chart
-fig1, ax1 = plt.subplots()
-sns.lineplot(data=popular_hour, x='hr_formatted', y='cnt', ax=ax1, marker='o', color=sns.color_palette("Blues", n_colors=3)[2])
-ax1.set_title('Jumlah Penyewaan Sepeda Berdasarkan Jam')
-ax1.set_xlabel('Jam')
-ax1.set_ylabel('Jumlah Penyewaan')
-ax1.set_xticklabels(ax1.get_xticklabels(), rotation=45, ha='right')
-st.pyplot(fig1)
-
 st.subheader(f"Data Penyewaan untuk Jam: {selected_hour} dan Tanggal: {start_date} sampai {end_date}")
 st.write(filtered_data)
 
