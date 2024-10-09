@@ -83,11 +83,12 @@ st.write(filtered_data)
 # 1. waktu paling banyak pelanggan peyewaan sepeda
 st.header("penyewaan sepeda berdasarkan jam")
  # Mengelompokkan dan menghitung total penyewaan per jam
-if 'cnt' in hour_df.columns:
-    popular_hour = hour_df.groupby('hr')['cnt'].sum().reset_index()
-else:
+if 'cnt' not in hour_df.columns:
     st.error("Kolom 'cnt' tidak ditemukan dalam DataFrame.")
-
+else:
+    # Lanjutkan dengan pengolahan data
+    popular_hour = hour_df.groupby('hr')['cnt'].sum().reset_index()
+    st.write(popular_hour)
 # Mengubah kolom jam menjadi format waktu (misalnya '00:00', '01:00', dll.)
 popular_hour['hr_formatted'] = popular_hour['hr'].astype(str).str.zfill(2) + ':00'
 
