@@ -66,13 +66,23 @@ if 'cnt' in hour_df.columns and 'hr' in hour_df.columns:
 else:
     st.error("Kolom 'cnt' atau 'hr' tidak ditemukan dalam DataFrame.")
 
-# Tren penyewaan berdasarkan hari kerja dan libur
+# penyewaan berdasarkan hari kerja dan libur
+day_df['weekday'] = day_df['dteday'].dt.weekday  # Menambahkan kolom 'weekday'
+
+# Mengganti angka dengan nama hari
 day_df['day_name'] = day_df['weekday'].replace({
-    0: 'Minggu', 1: 'Senin', 2: 'Selasa', 3: 'Rabu',
-    4: 'Kamis', 5: 'Jumat', 6: 'Sabtu'
+    0: 'Senin',
+    1: 'Selasa',
+    2: 'Rabu',
+    3: 'Kamis',
+    4: 'Jumat',
+    5: 'Sabtu',
+    6: 'Minggu'
 })
-day_order = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']
+
+day_order = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']
 day_df['day_name'] = pd.Categorical(day_df['day_name'], categories=day_order, ordered=True)
+
 
 weekday_trend = day_df.groupby('day_name')['cnt'].sum().reset_index()
 fig3, ax3 = plt.subplots()
