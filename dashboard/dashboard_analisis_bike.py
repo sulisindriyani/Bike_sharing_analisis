@@ -51,9 +51,6 @@ if selected_hour != "All":
 st.subheader(f"Data Penyewaan untuk Jam: {selected_hour} dan Tanggal: {start_date} sampai {end_date}")
 st.write(filtered_data)
 
-if 'cnt' not in hour_df.columns:
-    st.error("Kolom 'cnt' tidak ditemukan dalam DataFrame. Periksa file CSV.")
-else:
     # Mengelompokkan dan menghitung total penyewaan per jam
     popular_hour = hour_df.groupby('hr')['cnt'].sum().reset_index()
     
