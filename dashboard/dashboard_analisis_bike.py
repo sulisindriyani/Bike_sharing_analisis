@@ -82,7 +82,7 @@ day_df['day_name'] = day_df['weekday'].replace({
 day_order = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']
 day_df['day_name'] = pd.Categorical(day_df['day_name'], categories=day_order, ordered=True)
 
-
+st.title("Analisis Data RFM untuk Penyewaan Sepeda")
 weekday_trend = day_df.groupby('day_name')['cnt'].sum().reset_index()
 fig3, ax3 = plt.subplots()
 sns.barplot(data=weekday_trend, x='day_name', y='cnt', ax=ax3, order=day_order, palette="Blues")
