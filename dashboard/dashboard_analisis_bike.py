@@ -52,17 +52,9 @@ st.subheader(f"Data Penyewaan untuk Jam: {selected_hour} dan Tanggal: {start_dat
 st.write(filtered_data)
 
 # 2. Mengelompokkan dan menghitung total penyewaan per jam
-# Data
-data = {
-    'instant': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    'dteday': ['2011-01-01', '2011-01-02', '2011-01-03', '2011-01-04', '2011-01-05', 
-               '2011-01-06', '2011-01-07', '2011-01-08', '2011-01-09', '2011-01-10'],
-    'workingday': [0, 1, 1, 1, 1, 0, 0, 1, 1, 0],
-    'cnt': [10, 20, 30, 40, 50, 10, 20, 30, 40, 50]
-}
 
 # Membuat DataFrame dari data
-df = pd.DataFrame(data)
+df = pd.DataFrame("all_data (2)")
 
 # Mengelompokkan data berdasarkan workingday
 grouped_df = df.groupby('workingday')['cnt'].sum().reset_index()
