@@ -79,7 +79,7 @@ data = {
     'cnt': [10, 20, 30, 40, 50, 10, 20, 30, 40, 50]
 }
 
-df = pd.DataFrame("all_data (2)")
+df = pd.DataFrame(data)
 
 # Mengelompokkan data berdasarkan workingday
 grouped_df = df.groupby('workingday')['cnt'].sum().reset_index()
