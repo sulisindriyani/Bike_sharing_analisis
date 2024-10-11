@@ -69,13 +69,12 @@ st.pyplot(fig1)
 
 
 # 2. penyewaan di hari libur dan hari kerja
-
-st.title("penyewaan sepeda di hari kerja dan hari libur")
 day_df['category'] = day_df['weekday'].apply(lambda x: 'Hari Kerja' if x < 5 else 'Hari Libur')
 
 # Hitung rata-rata penyewaan berdasarkan kategori
 avg_rentals = day_df.groupby('category')['cnt'].mean().reset_index()
 
+st.title("penyewaan sepeda di hari kerja dan hari libur")
 # Visualisasi
 plt.figure(figsize=(10, 6))
 sns.barplot(data=avg_rentals, x='category', y='cnt')
