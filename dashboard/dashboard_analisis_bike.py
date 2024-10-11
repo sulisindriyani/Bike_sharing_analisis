@@ -70,8 +70,6 @@ st.pyplot(fig1)
 # penyewaan berdasarkan hari kerja dan libur
 day_df['weekday'] = day_df['dteday'].dt.weekday  # Menambahkan kolom 'weekday'
 
-df = pd.DataFrame(day_df)
-
 # Mengelompokkan data berdasarkan workingday
 grouped_df = df.groupby('workingday')['cnt'].sum().reset_index()
 
