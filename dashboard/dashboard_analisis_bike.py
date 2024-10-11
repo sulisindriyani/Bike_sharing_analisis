@@ -67,32 +67,38 @@ ax1.set_ylabel('Jumlah Penyewaan')
 ax1.set_xticklabels(ax1.get_xticklabels(), rotation=45, ha='right')
 st.pyplot(fig1)
 
-# penyewaan berdasarkan hari kerja dan libur
-day_df['weekday'] = day_df['dteday'].dt.weekday  # Menambahkan kolom 'weekday'
+# Data
+data = {
+    'instant': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    'dteday': ['2011-01-01', '2011-01-02', '2011-01-03', '2011-01-04', '2011-01-05', 
+               '2011-01-06', '2011-01-07', '2011-01-08', '2011-01-09', '2011-01-10'],
+    'workingday': [0, 1, 1, 1, 1, 0, 0, 1, 1, 0],
+    'cnt': [10, 20, 30, 40, 50, 10, 20, 30, 40, 50]
+}
 
-# Mengganti angka dengan nama hari
-day_df['day_name'] = day_df['weekday'].replace({
-    0: 'Senin',
-    1: 'Selasa',
-    2: 'Rabu',
-    3: 'Kamis',
-    4: 'Jumat',
-    5: 'Sabtu',
-    6: 'Minggu'
-})
+# Membuat DataFrame dari data
+df = pd.DataFrame(data)
 
-day_order = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']
-day_df['day_name'] = pd.Categorical(day_df['day_name'], categories=day_order, ordered=True)
+# Mengelompokkan data berdasarkan workingday
+grouped_df = df.groupby('workingday')['cnt'].sum().reset_index()
 
-st.title("Penyewaan Sepeda Berdasarkan Hari Kerja dan Hari Libur")
-weekday_trend = day_df.groupby('day_name')['cnt'].sum().reset_index()
-fig3, ax3 = plt.subplots()
-sns.barplot(data=weekday_trend, x='day_name', y='cnt', ax=ax3, order=day_order, palette="Blues")
-ax3.set_title('Jumlah Penyewaan Sepeda Berdasarkan Hari Kerja dan Hari Libur')
-ax3.set_xlabel('Hari')
-ax3.set_ylabel('Jumlah Penyewaan')
-ax3.set_xticklabels(ax3.get_xticklabels(), rotation=30, ha='right')
-st.pyplot(fig3)
+# Mengubah nilai workingday untuk label yang lebih baik
+grouped_df['workingday'] = grouped_df['workingday'].replace({0: 'Hari Libur', 1: 'Hari Kerja'})
+
+# Mengatur figure dan axes
+plt.figure(figsize=(8, 6))
+
+# Menggunakan seaborn untuk membuat barplot
+sns.barplot(x='workingday', y='cnt', data=grouped_df, palette='viridis')
+
+# Menambahkan judul dan label
+plt.title('Jumlah Penyewaan Sepeda Berdasarkan Hari Kerja dan Hari Libur', fontsize=15, fontweight='bold')
+plt.xlabel('Jenis Hari', fontsize=12)
+plt.ylabel('Jumlah Penyewaan', fontsize=12)
+
+# Menampilkan plot
+plt.grid(axis='y')
+plt.show()
 
 # Analisis Data RFM
 data = {
