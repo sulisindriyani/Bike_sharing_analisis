@@ -68,35 +68,22 @@ ax1.set_xticklabels(ax1.get_xticklabels(), rotation=45, ha='right')
 st.pyplot(fig1)
 
 
-# Membuat DataFrame dari data
+# 2. penyewaan di hari libur dan hari kerja
 
-# Data
-data = {
-    'instant': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    'dteday': ['2011-01-01', '2011-01-02', '2011-01-03', '2011-01-04', 
-               '2011-01-05', '2011-01-06', '2011-01-07', '2011-01-08', 
-               '2011-01-09', '2011-01-10'],
-    'workingday': [0, 1, 1, 1, 1, 0, 0, 1, 1, 0],
-    'cnt': [10, 20, 30, 40, 50, 10, 20, 30, 40, 50]
-}
+st.title("penyewaan sepeda di hari kerja dan hari libur")
+day_df['category'] = day_df['weekday'].apply(lambda x: 'Hari Kerja' if x < 5 else 'Hari Libur')
 
-# Membuat DataFrame dari data
-df = pd.DataFrame(data)
+# Hitung rata-rata penyewaan berdasarkan kategori
+avg_rentals = day_df.groupby('category')['cnt'].mean().reset_index()
 
-# Mengatur figure dan axes
+# Visualisasi
 plt.figure(figsize=(10, 6))
-
-# Membuat boxplot
-sns.boxplot(data=df, x='workingday', y='cnt')
-
-# Menambahkan judul dan label
-plt.title('Tren Penyewaan Sepeda Berdasarkan Hari Kerja dan Hari Libur', fontsize=15, fontweight='bold')
-plt.xlabel('Hari Kerja (1 = Ya, 0 = Tidak)', fontsize=12)
-plt.ylabel('Jumlah Penyewaan Sepeda', fontsize=12)
-
-# Mengatur grid dan label sumbu x
+sns.barplot(data=avg_rentals, x='category', y='cnt')
+plt.title('Perbandingan Rata-rata Penyewaan Sepeda: Hari Kerja vs Hari Libur')
+plt.xlabel('Kategori')
+plt.ylabel('Rata-rata Jumlah Penyewaan Sepeda')
 plt.grid(True)
-plt.xticks([0, 1], ['Hari Libur', 'Hari Kerja'])
+plt.show()
 
 # Menampilkan plot
 plt.show()
