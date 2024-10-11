@@ -73,35 +73,33 @@ st.pyplot(fig1)
 # Data
 data = {
     'instant': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    'dteday': ['2011-01-01', '2011-01-02', '2011-01-03', '2011-01-04', '2011-01-05', 
-               '2011-01-06', '2011-01-07', '2011-01-08', '2011-01-09', '2011-01-10'],
+    'dteday': ['2011-01-01', '2011-01-02', '2011-01-03', '2011-01-04', 
+               '2011-01-05', '2011-01-06', '2011-01-07', '2011-01-08', 
+               '2011-01-09', '2011-01-10'],
     'workingday': [0, 1, 1, 1, 1, 0, 0, 1, 1, 0],
     'cnt': [10, 20, 30, 40, 50, 10, 20, 30, 40, 50]
 }
 
+# Membuat DataFrame dari data
 df = pd.DataFrame(data)
 
-# Mengelompokkan data berdasarkan workingday
-grouped_df = df.groupby('workingday')['cnt'].sum().reset_index()
-
-# Mengubah nilai workingday untuk label yang lebih baik
-grouped_df['workingday'] = grouped_df['workingday'].replace({0: 'Hari Libur', 1: 'Hari Kerja'})
-
 # Mengatur figure dan axes
-plt.figure(figsize=(8, 6))
+plt.figure(figsize=(10, 6))
 
-# Menggunakan seaborn untuk membuat barplot
-sns.barplot(x='workingday', y='cnt', data=grouped_df, palette='viridis')
+# Membuat boxplot
+sns.boxplot(data=df, x='workingday', y='cnt')
 
 # Menambahkan judul dan label
-plt.title('Jumlah Penyewaan Sepeda Berdasarkan Hari Kerja dan Hari Libur', fontsize=15, fontweight='bold')
-plt.xlabel('Jenis Hari', fontsize=12)
-plt.ylabel('Jumlah Penyewaan', fontsize=12)
+plt.title('Tren Penyewaan Sepeda Berdasarkan Hari Kerja dan Hari Libur', fontsize=15, fontweight='bold')
+plt.xlabel('Hari Kerja (1 = Ya, 0 = Tidak)', fontsize=12)
+plt.ylabel('Jumlah Penyewaan Sepeda', fontsize=12)
+
+# Mengatur grid dan label sumbu x
+plt.grid(True)
+plt.xticks([0, 1], ['Hari Libur', 'Hari Kerja'])
 
 # Menampilkan plot
-plt.grid(axis='y')
 plt.show()
-
 # Analisis Data RFM
 data = {
     'User Type': [0, 1, 2, 3, 4, 860, 871, 876, 885, 886],
