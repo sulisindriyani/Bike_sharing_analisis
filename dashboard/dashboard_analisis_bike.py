@@ -85,8 +85,6 @@ plt.ylabel('Rata-rata Jumlah Penyewaan Sepeda')
 plt.grid(True)
 plt.show()
 
-# Menampilkan plot
-plt.show()
 # Analisis Data RFM
 data = {
     'User Type': [0, 1, 2, 3, 4, 860, 871, 876, 885, 886],
