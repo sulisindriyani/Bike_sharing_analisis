@@ -82,7 +82,7 @@ plt.title('Perbandingan Rata-rata Penyewaan Sepeda: Hari Kerja vs Hari Libur')
 plt.xlabel('Kategori')
 plt.ylabel('Rata-rata Jumlah Penyewaan Sepeda')
 plt.grid(True)
-plt.show()
+st.pyplot(plt)
 
 # Analisis Data RFM
 data = {
