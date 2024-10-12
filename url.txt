@@ -1,2 +1,2 @@
 link dashboard yang sudah di deploy :
-https://efp6j7fg2db75zvannyh8j.streamlit.app/
+https://mvowlu7g6ydjycepcb7vqg.streamlit.app/
