@@ -85,6 +85,7 @@ plt.grid(True)
 st.pyplot(plt)
 
 # Analisis Data RFM
+st.title("Analisis Data RFM")
 # Assuming you have your hour_df DataFrame already created
 # Convert 'dteday' to datetime format
 hour_df['dteday'] = pd.to_datetime(hour_df['dteday'])
