@@ -7,17 +7,17 @@ Penyewaan Berdasarkan Hari Kerja dan Libur dan analisis lanjutan:<br>
 yang berisi tentang Grafik Garis untuk Frequency vs Recency , Grafik Garis untuk Monetary vs Frequency<br>
 
 
-# Fitur yang di tampilkan:
-- Data Penyewaan untuk Jam : berisi detail penyewaan sepeda dengan keterangan jam dan tanggal
-- Penyewaan Sepeda Berdasarkan Jam: Menampilkan waktu paling banyak pelanggan dalam penyewaan sepeda.
-- Penyewaan sepeda di Hari Libur dan kerja: Menampilkan perbandingan jumlah penyewaan pada hari libur dan hari kerja.
-- Analisis Lanjutan:
-                    - menampilkan keterangan penyewaan sepeda dengan perbandingan hari, total rental dan total jam penewaan
+# Fitur yang di tampilkan:<br>
+- Data Penyewaan untuk Jam : berisi detail penyewaan sepeda dengan keterangan jam dan tanggal<br>
+- Penyewaan Sepeda Berdasarkan Jam: Menampilkan waktu paling banyak pelanggan dalam penyewaan sepeda.<br>
+- Penyewaan sepeda di Hari Libur dan kerja: Menampilkan perbandingan jumlah penyewaan pada hari libur dan hari kerja.<br>
+- Analisis Lanjutan:<br>
+                    - menampilkan keterangan penyewaan sepeda dengan perbandingan hari, total rental dan total jam penewaan<br>
 
 # syarat sistem
-1. pastikan memiliki library python yang dibutuhkan, jika belum bisa instal dengan perintah:
-   pip install -r requirements.txt
-2. jika sudah  library yang di butuhkan akan ada di dalam berkas requirements.txt
+1. pastikan memiliki library python yang dibutuhkan, jika belum bisa instal dengan perintah:<br>
+   pip install -r requirements.txt<br>
+2. jika sudah  library yang di butuhkan akan ada di dalam berkas requirements.txt<br>
 
 # Cara mnjalankan Aplikasi<br>
 1. Unduh berkas<br>
@@ -32,13 +32,13 @@ misal: streamlit run "C:/Users/smart user/Videos/dashboard/dashboard/dashboard_a
 5. Setelah menjalankan perintah tersebut, Streamlit akan menampilkan tautan lokal tersebut<br>
 
 #struktur berkas
-1. dataset : berisi berkas bahan analisi
-   ( datataset yang digunkan bike-sharing-dataset )
-2. notrbook_analisis.ipynb ; berisi berkas olahan dari datase mulai dari Gathering Data sampai Explanatory Analysiss.
-3. dashboard ; berisi kode untuk menjalankan  dashboard Streamlit (Dashboard).
-4. requirements.txt: Berisi daftar library Python yang digunakan untuk menjalankan aplikasi.
-5. url.txt : Berisi tautan untuk dashboard setelah di deploy
-6. README.md: Berisi dokumentasi ini termasuk didalamnya cara menjalankan dashboard.
+1. dataset : berisi berkas bahan analisi<br>
+   ( datataset yang digunkan bike-sharing-dataset )<br>
+2. notrbook_analisis.ipynb ; berisi berkas olahan dari datase mulai dari Gathering Data sampai Explanatory Analysiss.<br>
+3. dashboard ; berisi kode untuk menjalankan  dashboard Streamlit (dashboard_analisis_bike.py)<br>
+4. requirements.txt: Berisi daftar library Python yang digunakan untuk menjalankan aplikasi.<br>
+5. url.txt : Berisi tautan untuk dashboard setelah di deploy<br>
+6. README.md: Berisi dokumentasi ini termasuk didalamnya cara menjalankan dashboard.<br>
 
 # Dataset<br>
 yang di gunakan yaitu:<Br>
