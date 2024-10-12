@@ -139,4 +139,4 @@ ax[2].tick_params(axis='x', labelsize=15)
 
 # Overall title
 plt.suptitle("Best Customers Based on RFM Parameters (User Type)", fontsize=20)
-st.pyplot(plt)
+st.pyplot(fig)
