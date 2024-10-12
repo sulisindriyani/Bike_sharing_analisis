@@ -85,32 +85,58 @@ plt.grid(True)
 st.pyplot(plt)
 
 # Analisis Data RFM
-data = {
-    'User Type': [0, 1, 2, 3, 4, 860, 871, 876, 885, 886],
-    'Recency (Days)': [38, 0, 1, 0, 3, 97, 69, 68, 102, 110],
-    'Frequency (Total Rentals)': [35, 294, 648, 1154, 1602, 967, 938, 1916, 976, 977],
-    'Monetary (Total Time Rented)': [101, 1069, 2129, 3995, 5271, 16439, 15946, 32572, 16592, 17586]
-}
-df = pd.DataFrame(data)
+# Assuming you have your hour_df DataFrame already created
+# Convert 'dteday' to datetime format
+hour_df['dteday'] = pd.to_datetime(hour_df['dteday'])
 
-st.title("Analisis Data RFM untuk Penyewaan Sepeda")
-st.subheader("Analisis Deskriptif")
-description = df.describe()
-st.write(description)
+# Calculate the latest date in the dataset
+latest_date = hour_df['dteday'].max()
 
-# Visualisasi Data
-st.subheader("Recency vs Frequency")
-fig, ax = plt.subplots(figsize=(10, 5))
-sns.lineplot(data=df.sort_values('Recency (Days)'), x='Recency (Days)', y='Frequency (Total Rentals)', marker='o', ax=ax)
-ax.set_title('Recency vs Frequency')
-ax.set_xlabel('Recency (Days)')
-ax.set_ylabel('Frequency (Total Rentals)')
-st.pyplot(fig)
+# Calculate Recency in days
+hour_df['Recency'] = (latest_date - hour_df['dteday']).dt.days
 
-st.subheader("Frequency vs Monetary")
-fig2, ax2 = plt.subplots(figsize=(10, 5))
-sns.lineplot(data=df.sort_values('Frequency (Total Rentals)'), x='Frequency (Total Rentals)', y='Monetary (Total Time Rented)', marker='o', ax=ax2)
-ax2.set_title('Frequency vs Monetary')
-ax2.set_xlabel('Frequency (Total Rentals)')
-ax2.set_ylabel('Monetary (Total Time Rented)')
+# Calculate Frequency by summing up counts of rentals
+frequency = hour_df.groupby('registered')['cnt'].sum().reset_index()
+
+# Calculate Monetary value based on counts and hours
+hour_df['Monetary'] = hour_df['cnt'] * hour_df['hr']
+
+# Create the RFM DataFrame
+rfm = hour_df.groupby('registered').agg({
+    'Recency': 'min',
+    'cnt': 'sum',
+    'Monetary': 'sum'
+}).reset_index()
+
+# Rename the columns for clarity
+rfm.columns = ['User Type', 'Recency (Days)', 'Frequency (Total Rentals)', 'Monetary (Total Time Rented)']
+
+# Set up the subplots
+fig, ax = plt.subplots(nrows=1, ncols=3, figsize=(30, 6))
+
+colors = ["#72BCD4"] * 5  # Keeping the same color for all bars
+
+# Recency plot
+sns.barplot(y="Recency (Days)", x="User Type", data=rfm.sort_values(by="Recency (Days)", ascending=True).head(5), palette=colors, ax=ax[0], hue="User Type", legend=False)
+ax[0].set_ylabel(None)
+ax[0].set_xlabel(None)
+ax[0].set_title("By Recency (Days)", loc="center", fontsize=18)
+ax[0].tick_params(axis='x', labelsize=15)
+
+# Frequency plot
+sns.barplot(y="Frequency (Total Rentals)", x="User Type", data=rfm.sort_values(by="Frequency (Total Rentals)", ascending=False).head(5), palette=colors, ax=ax[1], hue="User Type", legend=False)
+ax[1].set_ylabel(None)
+ax[1].set_xlabel(None)
+ax[1].set_title("By Frequency", loc="center", fontsize=18)
+ax[1].tick_params(axis='x', labelsize=15)
+
+# Monetary plot
+sns.barplot(y="Monetary (Total Time Rented)", x="User Type", data=rfm.sort_values(by="Monetary (Total Time Rented)", ascending=False).head(5), palette=colors, ax=ax[2], hue="User Type", legend=False)
+ax[2].set_ylabel(None)
+ax[2].set_xlabel(None)
+ax[2].set_title("By Monetary", loc="center", fontsize=18)
+ax[2].tick_params(axis='x', labelsize=15)
+
+# Overall title
+plt.suptitle("Best Customers Based on RFM Parameters (User Type)", fontsize=20)
 st.pyplot(fig2)
